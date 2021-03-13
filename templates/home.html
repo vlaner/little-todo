@@ -7,9 +7,10 @@
   <input type="submit" value="Create task" />
 </form>
 </div>
-{% for field in object_list %}
-<div class="mx-auto pt-2">
 
+
+
+{% for field in object_list %}
 
   {% if field.isDone == True %}
   <p>
@@ -17,6 +18,7 @@
     <a href="{% url 'updatePost' field.id %}">Update</a>
     <a href="{% url 'deletePost' field.id %}">Delete</a>
   </p>
+
   {% else %}
   <p>
     {{field.title}} - TODO <br />
@@ -24,6 +26,6 @@
     <a href="{% url 'deletePost' field.id %}">Delete</a>
   </p>
 
-</div>
-{% endif %}
-{% endfor %} {% endblock content %}
+  {% endif %}
+{% endfor %} 
+{% endblock content %}
