@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+      <div class="text-lg-right">
+        {% if user.is_authenticated %}
+        <a style="color: white">{{ user.username }}</a>
+        <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+        <a class="navbar-brand" href="{% url 'createPost' %}">Create task</a>
+
+        {% else %}
+        <a class="navbar-brand" href="{% url 'register' %}">Register</a>
+        <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+    <div class="container">
+      <div class="ml-2 mt-1 w-100">
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+  </body>
+</html>

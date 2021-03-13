@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load crispy_forms_tags %}
+<div class="w-75">
+  <form action={% url 'createPost' %} method="post">
+  {%csrf_token%} {{form | crispy}}
+  <input type="submit" value="Create task" />
+</form>
+</div>
+
+<div class="mx-auto pt-2"></div>
+{% for field in object_list %}
+
+  {% if field.isDone == True %}
+  <p>
+    <strike> {{field.title}} <br /> </strike>
+    <a href="{% url 'updatePost' field.id %}">Update</a>
+    <a href="{% url 'deletePost' field.id %}">Delete</a>
+  </p>
+  {% else %}
+  <p>
+    {{field.title}} - TODO <br />
+    <a href="{% url 'updatePost' field.id %}">Update</a>
+    <a href="{% url 'deletePost' field.id %}">Delete</a>
+  </p>
+  {% endif %}
+</div>
+
+{% endfor %} {% endblock %}
